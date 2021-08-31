@@ -23,7 +23,7 @@ func NewSource() config.Source {
 }
 
 func (e *apollo) load() []*config.KeyValue {
-	kv := make([]*config.KeyValue,e.client.GetDefaultConfigCache().EntryCount())
+	kv := make([]*config.KeyValue, e.client.GetDefaultConfigCache().EntryCount())
 	e.client.GetDefaultConfigCache().Range(func(key, value interface{}) bool {
 		kv = append(kv, &config.KeyValue{
 			Key:   key.(string),

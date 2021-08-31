@@ -18,7 +18,7 @@ func (c *customChangeListener) OnChange(changeEvent *storage.ChangeEvent) {
 }
 
 func (c *customChangeListener) OnNewestChange(changeEvent *storage.FullChangeEvent) {
-	kv := make([]*config.KeyValue,len(changeEvent.Changes))
+	kv := make([]*config.KeyValue, len(changeEvent.Changes))
 	for key, value := range changeEvent.Changes {
 		kv = append(kv, &config.KeyValue{
 			Key:   key,
@@ -29,7 +29,7 @@ func (c *customChangeListener) OnNewestChange(changeEvent *storage.FullChangeEve
 }
 
 func NewWatcher(a *apollo) (config.Watcher, error) {
-	e:=make(chan []*config.KeyValue)
+	e := make(chan []*config.KeyValue)
 	a.client.AddChangeListener(&customChangeListener{})
 	return &watcher{event: e}, nil
 }
